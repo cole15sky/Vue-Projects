@@ -23,7 +23,7 @@
           <td>{{ product.price }}</td>
           <td>{{ product.category }}</td>
           <td>{{ product.title }}</td>
-          <td><img :src="product.image" alt="Product Image" style="width: 100px; height: 100px;" /></td>
+          <td><img :src="product.image" alt="Product Image" style="width: 150px; height: 150px;" /></td>
           <td>{{ product.rating.rate }}</td>
           <td>
             <button @click="addToCart(product)">+</button>
