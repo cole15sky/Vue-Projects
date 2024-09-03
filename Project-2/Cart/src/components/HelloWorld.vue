@@ -41,10 +41,10 @@
           <span class="text-2xl font-bold text-gray-900 dark:text-white">
             ${{ item.price }}
           </span>
-          <a href="#" @click="toggleButton"
+          <a href="#" @click="toggleButton(item)"
             class="text-white bg-blue-700 hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-small rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            {{  isActive ? 'Add':'Remove' }}  
-            <!-- Add and remove are the text which will be toggle when button is clicked -->
+            {{ cart.includes(item) ? 'Remove' : 'Add' }}
+
           </a>
         </div>
       </div>
@@ -60,7 +60,6 @@ export default {
   data() {
     return {
       items: [], // array to store the data fetched from API.
-      content: 0,
       cart: [],
       isActive : false
       
@@ -80,9 +79,15 @@ export default {
         console.error("Error fetching data:", error);
       }
     },
-    toggleButton(){
-      this.isActive =!this.isActive;
-    }
+      toggleButton(item) {
+    if (this.cart.includes(item)) {
+      this.cart = this.cart.filter(cartItem => cartItem.id !== item.id);
+    } else {
+      this.cart.push(item);
+    }    }
+
+
+
     // getData() {
     //   this.content++;
     //   console.log('Content value:', this.content);
